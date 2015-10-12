@@ -1,5 +1,5 @@
-#require 'open3'
-#
+# require 'open3'
+
 # BIN_PATH = File.join(File.dirname(__FILE__), "../mruby/bin/pdfq")
 #
 # assert('trivial') do

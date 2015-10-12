@@ -67,7 +67,9 @@ $ pdftk SF1424-15.pdf dump_data_fields | pdfq | jq '.[2]'
 
 ## Installation
 
-TBD. Releases will be available as binaries using GitHub releases.
+See latest [release](https://github.com/adelevie/pdfq/releases).
+
+Download the appropriate binary and add it to your path.
 
 ## Development
 

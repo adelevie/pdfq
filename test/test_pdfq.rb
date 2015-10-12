@@ -1,10 +1,5 @@
 class TestPdfq < MTest::Unit::TestCase
 
-  def test_main
-    # assert_nil __main__([])
-    assert true
-  end
-
   def test_parse_pdftk_string
     pdftk_string = %q(
 ---

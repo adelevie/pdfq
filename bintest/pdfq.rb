@@ -1,17 +1,10 @@
-require 'open3'
+#require 'open3'
+#
+# BIN_PATH = File.join(File.dirname(__FILE__), "../mruby/bin/pdfq")
+#
+# assert('trivial') do
+#   assert_equal 1, 1
+# end
 
-BIN_PATH = File.join(File.dirname(__FILE__), "../mruby/bin/pdfq")
-
-assert('hello') do
-  output, status = Open3.capture2(BIN_PATH)
-
-  assert_true status.success?, "Process did not exit cleanly"
-  assert_include output, "Hello World"
-end
-
-assert('version') do
-  output, status = Open3.capture2(BIN_PATH, "version")
-
-  assert_true status.success?, "Process did not exit cleanly"
-  assert_include output, "v0.0.1"
-end
+# Integration tests are coming soon. At least until after
+# https://github.com/hone/mruby-cli/issues/24 is resolved.

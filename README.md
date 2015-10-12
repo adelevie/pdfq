@@ -99,7 +99,7 @@ Then run `./mruby/build/{your build target}/bin/pdfq` version.
 
 #### Unit test(s)
 
-Located in `test/test_pdfq.rb`
+Located in `test/test_pdfq.rb`.
 
 ```bash
 $ docker-compose run test
@@ -107,6 +107,8 @@ $ docker-compose run test
 
 #### Integration tests
 
-Located in `bintest/`
+Located in `bintest/pdfq.rb`.
 
-TDB. See https://github.com/hone/mruby-cli/issues/24.
+```bash
+$ docker-compose run bintest
+```

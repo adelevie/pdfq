@@ -2,15 +2,21 @@ def __main__(argv)
   if argv[1] == "version"
     puts "v#{Pdfq::VERSION}"
   else
-    pdftk_string = ""
-    while line = gets
-      pdftk_string = pdftk_string + line
-    end
-
+    pdftk_string = get_stdin_from_pipe
     result = parse_pdftk_string(pdftk_string)
     json_string = JSON.generate(result, {pretty_print: true})
+
     IO.puts json_string
   end
+end
+
+def get_stdin_from_pipe
+  string = ""
+  while line = gets
+    string = string + line
+  end
+
+  string
 end
 
 def parse_pdftk_string(pdftk_string)

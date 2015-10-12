@@ -1,6 +1,6 @@
 # pdfq
 
-A lightweight library that sits between [https://www.pdflabs.com/tools/pdftk-server/] and [`jq`](https://stedolan.github.io/jq/manual/).
+A lightweight library that sits between ['pdftk'](https://www.pdflabs.com/tools/pdftk-server/) and [`jq`](https://stedolan.github.io/jq/manual/).
 
 `pdfq` receives via stdin the output of `pdftk`'s `dump_data_fields` command and outputs it as JSON.
 

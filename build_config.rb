@@ -5,6 +5,7 @@ def gem_config(conf)
   conf.gem File.expand_path(File.dirname(__FILE__))
   conf.gem :github => 'kou/mruby-pp'
   conf.gem :github => 'iij/mruby-iijson'
+  conf.gem :github => 'iij/mruby-tempfile'
 end
 
 MRuby::Build.new do |conf|

@@ -1,0 +1,19 @@
+
+%FDF-1.2
+1 0 obj
+<<
+/FDF << /Fields [
+  << /V (Yes)/T (RIFYes) >> 
+<< /V ()/T (RIFNo) >> 
+<< /V ()/T (ResYes) >> 
+<< /V (Yes)/T (ResNo) >> 
+
+] >>
+>>
+endobj
+trailer
+<<
+/Root 1 0 R
+>>
+%%EOF
+  

@@ -6,63 +6,79 @@ A lightweight library that sits between ['pdftk'](https://www.pdflabs.com/tools/
 
 ## Synopsis
 
-These examples use [SF-1424](http://www.gsa.gov/portal/forms/download/115830).
+If you clone this repo and `cd` into the `examples` folder, you can run these yourself:
+
+### Basic
+
+Takes the output from dump_data_fields, pipe it into pdfq, and output json:
 
 ```bash
-$ pdftk SF-1424.pdf dump_data_fields | pdfq
-[
-  {
-    "FieldType": "Text",
-    "FieldName": "form1[0].#subform[0].item20[0]",
-    "FieldNameAlt": "20. ITEM DESCRIPTION",
-    "FieldFlags": "8388608",
-    "FieldJustification": "Left"
-  },
-  {
-    "FieldType": "Text",
-    "FieldName": "form1[0].#subform[0].item21[0]",
-    "FieldNameAlt": "21. ITEM DESCRIPTION",
-    "FieldFlags": "8388608",
-    "FieldJustification": "Left"
-  },
-  {
-    "FieldType": "Text",
-    "FieldName": "form1[0].#subform[0].SUBCONTRACTNUMBER[0]",
-    "FieldNameAlt": "9. SUBCONTRACT NUMBER",
-    "FieldFlags": "8388608",
-    "FieldJustification": "Left"
-  },
-  ...
-]
+pdftk pdfs/SF-52.pdf dump_data_fields | pdfq
 ```
 
-With this JSON, we can pipe that output into `jq`, a CLI for manipulating JSON:
+### Buttons
+
+Like the previous example, but only outputs fields where `FieldType` is `Button`.
 
 ```bash
-$pdftk SF1424-15.pdf dump_data_fields | pdfq | jq '.[0]'                   
-{
-  "FieldType": "Text",
-  "FieldName": "form1[0].#subform[0].item20[0]",
-  "FieldNameAlt": "20. ITEM DESCRIPTION",
-  "FieldFlags": "8388608",
-  "FieldJustification": "Left"
-}
-$ pdftk SF1424-15.pdf dump_data_fields | pdfq | jq '.[1]'
-{
-  "FieldType": "Text",
-  "FieldName": "form1[0].#subform[0].item21[0]",
-  "FieldNameAlt": "21. ITEM DESCRIPTION",
-  "FieldFlags": "8388608",
-  "FieldJustification": "Left"
-}
-$ pdftk SF1424-15.pdf dump_data_fields | pdfq | jq '.[2]'
-{
-  "FieldType": "Text",
-  "FieldName": "form1[0].#subform[0].SUBCONTRACTNUMBER[0]",
-  "FieldNameAlt": "9. SUBCONTRACT NUMBER",
-  "FieldFlags": "8388608",
-  "FieldJustification": "Left"
-}
+pdftk pdfs/SF-52.pdf dump_data_fields | pdfq buttons
+```
+
+### jq
+
+`pdfq` mixes nicely with `jq`. In this example, jq filters for fields where FieldType is a Button.
+
+```bash
+pdftk pdfs/SF-52.pdf dump_data_fields | pdfq | jq '.[] | select(.FieldType=="Button")'
+```
+
+### FDF
+
+Generates FDF from JSON:
+
+```bash
+cat json/SF-52-fields.json | pdfq json_to_fdf
+```
+
+### Fill
+
+Combine the `json_to_fdf` command with `pdftk` to fill a form from json in two commands:
+
+```bash
+cat json/SF-52-fields.json | pdfq json_to_fdf > fdfs/SF-52-fields.fdf
+pdftk pdfs/SF-52.pdf fill_form fdfs/SF-52-fields.fdf output pdfs/SF-52-filled.pdf
+```
+
+### PDFTK wrappers
+
+The following commands provide convenience methods on top of `pdftk`. To run them, you must have `pdftk` on your path.
+
+### Get
+
+Gets the value of a single field in the PDF.
+
+```bash
+pdfq get <field> <pdf_path>
+```
+
+Example:
+
+```bash
+pdfq get EdLevel pdfs/SF-52-filled.pdf
+```
+
+### Set
+
+Sets the value of a single field in the PDF.
+
+```bash
+pdfq set <field> <value> <input_pdf_path> <output_pdf_path>
+```
+
+Example:
+
+```bash
+pdfq set EdLevel ED_LEVEL pdfs/SF-52.pdf pdfs/SF-52-filled.pdf
 ```
 
 ## Installation

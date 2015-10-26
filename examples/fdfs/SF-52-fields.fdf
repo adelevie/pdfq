@@ -1,0 +1,18 @@
+
+%FDF-1.2
+1 0 obj
+<<
+/FDF << /Fields [
+  << /V (Sample EdLevel)/T (EdLevel) >> 
+<< /V (Sample DegAttan)/T (DegAttan) >> 
+<< /V (Sample AcdDiscp)/T (AcdDiscp) >> 
+
+] >>
+>>
+endobj
+trailer
+<<
+/Root 1 0 R
+>>
+%%EOF
+  
